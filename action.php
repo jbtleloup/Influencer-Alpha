@@ -45,7 +45,7 @@ if (isset($_POST["submit"])) {
 }
 
 
-function insert_customer($conn, $fname, $lname, $email)
+function insert_customer(mysqli $conn, $fname, $lname, $email)
 {
 
     //insert new customer
@@ -67,7 +67,7 @@ function insert_customer($conn, $fname, $lname, $email)
 
 }
 
-function insert_plan($conn, $email, $plan)
+function insert_plan(mysqli $conn, $email, $plan)
 {
     $customer_id = get_id_from_customer_email($conn, $email);
 
@@ -89,7 +89,7 @@ function insert_plan($conn, $email, $plan)
 
 }
 
-function insert_iguname($conn, $email, $ig)
+function insert_iguname(mysqli $conn, $email, $ig)
 {
     $customer_id = get_id_from_customer_email($conn, $email);
 
@@ -111,7 +111,7 @@ function insert_iguname($conn, $email, $ig)
 
 }
 
-function get_id_from_customer_email($conn, $email)
+function get_id_from_customer_email(mysqli $conn, $email)
 {
     $sql = "SELECT * FROM Customers WHERE email=?";
 
@@ -127,15 +127,15 @@ function get_id_from_customer_email($conn, $email)
 
     $stmt->close();
 
-    $num_of_rows = $result->num_rows;
+    //$num_of_rows = $result->num_rows;
 
     $customer_id = $customer_email = $customer_fname = $customer_lname = "";
 
     while ($row = $result->fetch_assoc()) {
         $customer_id = $row['id'];
-        $customer_fname = $row['fname'];
-        $customer_lname = $row['lname'];
-        $customer_email = $row['email'];
+        //$customer_fname = $row['fname'];
+        //$customer_lname = $row['lname'];
+        //$customer_email = $row['email'];
     }
 
     return $customer_id;
