@@ -1,13 +1,12 @@
-	.DS_Store
-	.gitignore
-	.idea/dataSources.local.xml
-	.idea/dataSources.xml
-	.idea/dataSources/
-	.idea/misc.xml
-	.idea/modules.xml
-	.idea/php.xml
-	.idea/sqldialects.xml
-	.idea/testWAMPP.iml
-	.idea/workspace.xml
+.DS_Store
+.idea/dataSources.local.xml
+.idea/dataSources.xml
+.idea/dataSources/
+.idea/misc.xml
+.idea/modules.xml
+.idea/php.xml
+.idea/sqldialects.xml
+.idea/testWAMPP.iml
+.idea/workspace.xml
 
-nothing added to commit but untracked files present (use "git add" to track)
+
