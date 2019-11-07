@@ -29,6 +29,13 @@ $(window).on('load', function () {
         event.preventDefault();
     });
 
+    $(window).resize(() => {
+        let nav = $('.nav-switch')
+        if (!nav.is(':visible')) {
+            $('.nav-warp').show();
+        }
+    });
+
 
     /*------------------
         Background Set
@@ -176,7 +183,7 @@ if (pl) {
 
 
 let app = document.getElementById('typewriter');
-if(app){
+if (app) {
     const instance = new Typewriter(app, {
         autoStart: true,
         delay: 45,

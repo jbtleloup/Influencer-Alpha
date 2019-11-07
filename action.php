@@ -22,19 +22,19 @@ if (isset($_POST["submit"])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    if(!get_id_from_customer_email($conn,$email)) {
+    if (!get_id_from_customer_email($conn, $email)) {
         if (insert_customer($conn, $fname, $lname, $email)) {
             insert_iguname($conn, $email, $ig);
-            insert_plan($conn,$email,$plan);
-            go_index();
+            insert_plan($conn, $email, $plan);
+            go_stripe();
         } else {
             echo "Error: We could not update the database: C<br>" . $conn->error;
-            //TODO: differenciate the case where $ig is already in database and where we have an error
         }
     } else {
-        if(insert_iguname($conn,$email,$ig)){
-            go_index();
+        if (insert_iguname($conn, $email, $ig)) {
+            go_stripe();
         } else {
+            //TODO: differenciate the case where $ig is already in database and where we have an error
             echo "Error: We could not update the database: IG<br>" . $conn->error;
         }
 
@@ -141,11 +141,42 @@ function get_id_from_customer_email(mysqli $conn, $email)
     return $customer_id;
 }
 
-function go_index()
+function go_stripe()
 {
-    echo '<script type="text/javascript">
-           window.location = "./index.html"
-      </script>';
+    echo '
+
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+<script> 
+          
+        // Get HTML head element 
+        var head = document.getElementsByTagName("HEAD")[0];  
+  
+        // Create new link Element 
+        var link = document.createElement("link"); 
+  
+        // set the attributes for link element  
+        link.rel = "stylesheet";  
+      
+        link.type = "text/css"; 
+      
+        link.href = "css/style.css";  
+  
+        // Append link element to HTML head 
+        head.appendChild(link);  
+    </script>  
+<script src="https://js.stripe.com/v3/"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/stripe.js"></script>
+<script type="text/javascript">
+           stripe_test();
+      </script>
+      <script> $(".loader");
+$("#preloder").delay(4000000).fadeOut("slow");
+</script>
+      ';
+
 }
 
 function test_input($data)
